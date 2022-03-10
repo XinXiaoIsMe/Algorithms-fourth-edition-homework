@@ -38,7 +38,7 @@ function evaluatePostfix (input) {
   return stack[0]
 }
 
-const usecases = ['1 2 + 3 4 - 5 6 - * *']
+const usecases = ['1 2 + 3 4 - 5 6 - * *', '4 2 + 1 3 - *']
 for (const usecase of usecases) {
   console.log(evaluatePostfix(usecase))
 }
