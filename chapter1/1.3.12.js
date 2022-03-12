@@ -63,8 +63,8 @@ class Stack {
   * [Symbol.iterator] () {
     const data = []
     for (let i = 0; i < this.getSize(); i ++) data[i] = this.data[i]
-    let count = 0
-    while (count < data.length) yield data[count ++]
+    let count = data.length - 1
+    while (count >= 0) yield data[count --]
   }
 
   // 这里约定传入的字符串以空格分隔，字符串左边为栈顶
@@ -76,13 +76,61 @@ class Stack {
   }
 }
 
+const LinkedList = require('../utils/LinkedList')
 class LinkedListStack {
-  
+  constructor () {
+    this.data = new LinkedList()
+  }
+
+  getSize () {
+    return this.data.getSize()
+  }
+
+  isEmpty () {
+    return this.data.isEmpty()
+  }
+
+  push (val) {
+    this.data.addFirst(val)
+  }
+
+  pop () {
+    return this.data.removeFirst()
+  }
+
+  peek () {
+    if (this.getSize() === 0) throw new RangeError('the stack is empty.')
+    const head = this.pop()
+    this.push(head.val)
+    return head.val
+  }
+
+  * [Symbol.iterator] () {
+    let p = this.data.head
+    while (p !== null) {
+      yield p.val
+      p = p.next
+    }
+  }
+
+  // 这里约定传入的字符串以空格分隔，字符串左边为栈顶
+  static copy (stringStack) {
+    const stack = stringStack.split(/\s/)
+    const copyStack = new LinkedListStack()
+    for (let i = stack.length - 1; i >= 0; i --) copyStack.push(stack[i])
+    return copyStack
+  }
 }
 
 const usecase = '1 2 3 4 5 6 7 8'
 const copyStack = Stack.copy(usecase)
-console.log('result: ', copyStack)
 for (const value of copyStack) {
+  console.log(value)
+}
+
+console.log('-----------------------------------')
+
+const copyStack2 = LinkedListStack.copy(usecase)
+for (const value of copyStack2) {
   console.log(value)
 }

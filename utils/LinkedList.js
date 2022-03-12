@@ -29,6 +29,17 @@ class LinkedList {
     return null
   }
 
+  findIndex (val) {
+    if (this.head === null) return -1
+
+    let p = this.head
+    let i = -1
+    while (++ i < this.size && p.val !== val) {
+      p = p.next
+    }
+    return i === this.size ? -1 : i
+  }
+
   add (index, val) {
     if (index < 0 || index > this.size) throw new RangeError(`index must >= 0 and < LinkedList size`)
 
@@ -36,7 +47,6 @@ class LinkedList {
     let next = this.head
     let count = 0
     while (count ++ < index) {
-      console.log(this.head, index)
       pre = next
       next = next.next
     }
@@ -48,23 +58,69 @@ class LinkedList {
     this.size ++
   }
 
-  addFirst () {}
+  addFirst (val) {
+    this.add(0, val)
+  }
 
-  addLast () {}
+  addLast (val) {
+    this.add(this.size, val)
+  }
 
-  remove (index) {}
+  remove (index) {
+    if (index < 0 || index >= this.size) throw new RangeError('index must >= 0 and < size')
+    let pre = this.head
+    let next = this.head
+    while (index -- > 0) {
+      pre = next
+      next = next.next
+    }
+    if (next === this.head) {
+      this.head = this.head.next
+      next.next = null
+      return next
+    }
+    const delEl = next
+    pre.next = next.next
+    delEl.next = null
+    return delEl
+  }
 
-  removeFirst () {}
+  removeFirst () {
+    return this.remove(0)
+  }
 
-  removeLast () {}
+  removeLast () {
+    return this.remove(this.size - 1)
+  }
 
-  toString () {}
+  removeElement (val) {
+    if (this.head === null) return null
+
+    let pre = this.head
+    let next = this.head
+    while (next !== null) {
+      if (next.val === val) break
+      pre = next
+      next = next.next
+    }
+    if (next === this.head) {
+      this.head = null
+      return
+    }
+    if (next !== null) pre.next = next.next
+    next = null
+  }
+
+  toString () {
+    let p = this.head
+    let ret = []
+    while (p !== null) {
+      ret.push(p.val)
+      p = p.next
+    }
+    return ret.join(', ')
+  }
 }
 
-const linkedList = new LinkedList()
-linkedList.add(0, 1)
-linkedList.add(0, 2)
-linkedList.add(1, 3)
-console.log(linkedList)
-
 module.exports = LinkedList
+
