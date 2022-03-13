@@ -16,15 +16,13 @@ function reverse2 (head) {
   if (head === null || head.next === null) return head
   let p1 = null
   let p2 = head
-  let p3 = head.next
-  while (p3 !== null) {
+  while (p2 !== null) {
+    let p3 = p2.next
     p2.next = p1
     p1 = p2
     p2 = p3
-    p3 = p3.next
   }
-  p2.next = p1
-  return p2
+  return p1
 }
 
 // test
