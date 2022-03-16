@@ -40,6 +40,6 @@ function render (list, start, end, ret, colorMap, color) {
 }
 
 // test 在浏览器控制台运行
-const list = Array.from({ length: 10 }, (item, index) => Math.round(Math.random() * 10 + 1))
+const list = ['E', 'A', 'S', 'Y', 'Q', 'U', 'E', 'S', 'T', 'I', 'O', 'N']
 console.log('排序前：', list)
 console.log('排序后：', selectionSortTrack(list))
