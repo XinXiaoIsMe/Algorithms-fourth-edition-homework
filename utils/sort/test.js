@@ -1,7 +1,8 @@
 const list = Array.from({ length: 10 }, () => Math.round(Math.random() * 10 + 1))
 console.log('排序前', list)
 // const sort = require('./insertionSort')
-const sort = require('./shellSort')
+const sort = require('./shellSort').shellSort
+// const sort = require('./shellSort').betterShellSort
 debugger
 sort(list)
 console.log('排序后', list)
