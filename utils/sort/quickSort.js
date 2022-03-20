@@ -30,10 +30,10 @@ class QuickSort {
     let j = high + 1
     const cur = list[low]
     while (true) {
-      while (list[++ i] <= cur) {
+      while (list[++ i] < cur) {
         if (i === high) break
       }
-      while (list[-- j] >= cur) {
+      while (list[-- j] > cur) {
         if (j === low) break
       }
       if (i >= j) break
