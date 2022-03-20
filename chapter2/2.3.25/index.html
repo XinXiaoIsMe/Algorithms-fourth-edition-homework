@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.3.25</title>
+</head>
+<body>
+  <div id="chart" style="width: 600px; height: 600px;"></div>
+
+  <script src="./echarts.js"></script>
+  <script type="module" src="./QuickSort.js"></script>
+  <script type="module">
+    import { generateRandomArray } from './utils.js'
+    import QuickSort from './QuickSort.js'
+    import draw from './draw.js'
+
+    const NUMBERS = [10 ** 3, 10 ** 4, 10 ** 5, 10 ** 6]
+    const ret = []
+    for (let M = 0; M <= 30; M ++) {
+      let time = 0
+      for (let i = 0; i < NUMBERS.length; i ++) {
+        const arr = generateRandomArray(0, NUMBERS[i], NUMBERS[i])
+        const startTime = new Date().valueOf()
+        QuickSort.sort(arr, M)
+        const endTime = new Date().valueOf()
+        time += (endTime - startTime)
+      }
+      ret.push(time)
+    }
+    draw(ret, 31)
+  </script>
+</body>
+</html>

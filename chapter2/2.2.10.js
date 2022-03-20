@@ -2,7 +2,7 @@
 
 class MergeSort {
   static main (start, end, len) {
-    const list = MergeSort.#generateRandomArray(start, end, len)
+    const list = this.#generateRandomArray(start, end, len)
     console.log('排序前：', list)
     this.sort(list)
     console.log('排序后：', list)
