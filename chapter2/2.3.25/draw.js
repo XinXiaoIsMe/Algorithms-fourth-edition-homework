@@ -5,7 +5,7 @@ function draw (data, M) {
 
   option = {
     title: {
-      text: 'Temperature Change in the Coming Week'
+      text: '排序时间图'
     },
     tooltip: {
       trigger: 'axis',
