@@ -7,9 +7,6 @@ class MergeSort {
     this.sort(list)
     console.log('排序后：', list)
     console.log('是否有序：', this.#isSorted(list))
-    // const list = [1, 2, 3, 4, 2, 5, 5, 6]
-    // this.#merge(list, 0, 3, 7, [])
-    // console.log(list)
   }
 
   static sort (list) {
