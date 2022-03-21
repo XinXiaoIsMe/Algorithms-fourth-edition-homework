@@ -50,8 +50,8 @@ class MergeSort {
     let first = low
     let tail = high
     let cur = low
-    while (first <= tail) {
-      if (tempArr[first] < tempArr[tail]) list[cur ++] = tempArr[first ++]
+    while (first <= mid) {
+      if (tempArr[first] <= tempArr[tail]) list[cur ++] = tempArr[first ++]
       else list[cur ++] = tempArr[tail --]
     }
   }
